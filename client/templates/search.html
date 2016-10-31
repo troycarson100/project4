@@ -1,0 +1,18 @@
+<div class="content">
+  <h2 class="content-subhead">Search Walmart</h2>
+
+  <form ng-submit="tc.addTodo()" class="">
+    <fieldset>
+        <legend>Create Todo's:</legend>
+
+
+        <input ng-model="tc.newTodo.item" id="name" type="text" placeholder="Item">
+
+        <button type="submit" class="pure-button pure-button-primary">Create</button>
+    </fieldset>
+</form>
+
+  <ul>
+    <li ui-sref="todo({id: todo._id})" ng-repeat="todo in tc.todos">{{todo.item}}</li>
+  </ul>
+</div>
