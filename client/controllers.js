@@ -20,7 +20,7 @@ function mainController($rootScope, $state, AuthService) {
   vm.toggleMenu = function(){
     vm.menuActive = !vm.menuActive
   }
-  
+
   $rootScope.$on('$stateChangeStart', function (event) {
     // console.log("Changing states")
     AuthService.getUserStatus()
@@ -40,9 +40,11 @@ function SearchController($state, AuthService, $http){
     console.log("let us search for "+ vm.termino)
     url= '/search?term='+ vm.termino
     $http.get(url).then(function(response){
-      vm.items = JSON.parse(response.data)
-      vm.allItems = vm.items.items
-      console.log(vm.allItems)
+      console.log(response)
+      vm.items = response.data
+      console.log(vm.items)
+      vm.walmart = vm.items.products.walmart.items
+
     })
   }
 

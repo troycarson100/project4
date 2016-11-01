@@ -92,28 +92,32 @@ app.get('/', function(req, res) {
 
 
 app.get('/search', function(req, res) {
-  console.log(req.query)
+  // console.log(req.query)
   var apiUrl = 'http://api.walmartlabs.com/v1/search?query='
   var apiKey = '&format=json&facet=on&facet.range=price%3A%5B1+TO+50%5D&apiKey=khaernw7exvbwswcvbupfyw2&sort=relevance&numItems=25'
-  // var combinedApi = {
-  //   products: {
-  //     walmart: [],
-  //     etsy: []
-  //   }
-  //   totalCount:
-  // }
-  request.get(apiUrl + req.query.term + apiKey, function(err, walmartResponse, walmartBody) {
-    console.log(walmartBody)
-    console.log(walmartResponse)
-      res.json(walmartBody)
-      // request.get()
-      // theXml = res
-      // parser.toJson(theXml)
-    // arr.push(walmartBody)
-    // request({
-    // res.json(combinedApi)
+  var apiUrlEtsy = 'https://openapi.etsy.com/v2/listings/active?api_key='
+  var apiKeyEtsy = 's0d7m2hmm5k6c3z4q5sgs0jc'
 
-})
+  var combinedApi = {
+    totalCount: 0,
+    products: {
+      walmart: [],
+      etsy: []
+    }
+  }
+    request.get(apiUrl + req.query.term + apiKey, function(err, walmartResponse, walmartBody) {
+      combinedApi.products.walmart = (JSON.parse(walmartBody))
+
+      request.get(apiUrlEtsy + apiKeyEtsy, function(err, etsyResponse, etsyBody){
+        combinedApi.products.etsy = (JSON.parse(etsyBody))
+        console.log(JSON.parse(etsyBody))
+      })
+
+        for(vendor in combinedApi.products) {
+          combinedApi.totalCount += combinedApi.products[vendor].length
+        }
+      res.json(combinedApi)
+    })
 })
 
 // error hndlers

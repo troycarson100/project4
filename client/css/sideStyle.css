@@ -1,12 +1,13 @@
 
   #myMenu {
-    background: rgba(100, 135, 121, 0.71);
-    width:250px;
+    background: rgba(100, 135, 121, 0.9);
+    width:275px;
     height: 100%;
     position:fixed;
     top: 0;
-    padding: 20px 8px 30px 20px;
+    padding: 20px 2px 30px 20px;
     margin-top: 50px;
+    border-radius: 8px;
 
     -webkit-transition: left 0.3s;
   }
@@ -16,7 +17,7 @@
   }
 
   #myMenu.menu-inactive {
-    left: -180px;
+    left: -215px;
   }
 
   .toggleBtn{
