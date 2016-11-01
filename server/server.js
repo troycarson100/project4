@@ -12,7 +12,11 @@ var
   request = require('request'),
   passport = require('passport'),
   passportConfig = require('./config/passport.js'),
+  Hashes = require('jshashes'),
+  parser = require('xml2json'),
   port = process.env.PORT || 3000
+
+
 
 // mongoose
 mongoose.connect('mongodb://localhost/mean-auth', function(err) {
@@ -53,14 +57,63 @@ app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, '../client', 'index.html'))
 })
 
-app.get('/search', function(req, res) {
-  var apiUrl = 'http://api.walmartlabs.com/v1/search?query='
-  var apiKey = '&format=json&apiKey=khaernw7exvbwswcvbupfyw2'
-  request.get(apiUrl + req.query + apiKey, function(err, walmartResponse, walmartBody) {
 
-    var img = JSON.parse(walmartBody).data[0].items.thumbnailImage
-    res.send('<img src="' + img + '">')
-  })
+// ------------------------ AMAZON
+
+// var aws = {
+//   access_key_id: 'AKIAJQFCOZHIGEZ5M33A',
+//   secret_access_key: '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'
+// }
+
+
+// app.get('/api/test', function(req, res) {
+//
+//   var timestamp = (new Date()).toISOString()
+//
+//   var exampleRequestString = `webservices.amazon.com
+// /onca/xml
+// AWSAccessKeyId=${aws.access_key_id}&AssociateTag=mytag-20&ItemId=0679722769&Operation=ItemLookup&ResponseGroup=Images%2CItemAttributes%2COffers%2CReviews&Service=AWSECommerceService&Timestamp=${timestamp}&Version=2013-08-01`
+//
+//
+//   var testhash = new Hashes.SHA256().hex_hmac(aws.secret_access_key, exampleRequestString)
+//
+//   console.log(testhash)
+
+  // var apiUrl = 'http://webservices.amazon.com/onca/xml?AWSAccessKeyId='+aws.access_key_id+'&AssociateTag=mytag-20&ItemId=0679722769&Operation=ItemLookup&ResponseGroup=Images%2CItemAttributes%2COffers%2CReviews&Service=AWSECommerceService&Timestamp=' + timestamp + '&Version=2013-08-01&Signature=' + testhash
+  // console.log(apiUrl)
+  // console.log(timestamp)
+
+//   request.get(apiUrl, function(err, response, body) {
+//     res.send(body)
+//   })
+// })
+
+// ------------------------ AMAZON
+
+
+app.get('/search', function(req, res) {
+  console.log(req.query)
+  var apiUrl = 'http://api.walmartlabs.com/v1/search?query='
+  var apiKey = '&format=json&facet=on&facet.range=price%3A%5B1+TO+50%5D&apiKey=khaernw7exvbwswcvbupfyw2&sort=relevance&numItems=25'
+  // var combinedApi = {
+  //   products: {
+  //     walmart: [],
+  //     etsy: []
+  //   }
+  //   totalCount:
+  // }
+  request.get(apiUrl + req.query.term + apiKey, function(err, walmartResponse, walmartBody) {
+    console.log(walmartBody)
+    console.log(walmartResponse)
+      res.json(walmartBody)
+      // request.get()
+      // theXml = res
+      // parser.toJson(theXml)
+    // arr.push(walmartBody)
+    // request({
+    // res.json(combinedApi)
+
+})
 })
 
 // error hndlers

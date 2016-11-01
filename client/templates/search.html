@@ -1,18 +1,29 @@
 <div class="content">
   <h2 class="content-subhead">Search Walmart</h2>
 
-  <form ng-submit="tc.addTodo()" class="">
+  <form ng-submit="sc.walmartSearch()" class="">
     <fieldset>
-        <legend>Create Todo's:</legend>
+        <!-- <legend>Search Walmart:</legend> -->
 
 
-        <input ng-model="tc.newTodo.item" id="name" type="text" placeholder="Item">
+        <input ng-model="sc.termino" id="name" type="text" placeholder="Item">
 
-        <button type="submit" class="pure-button pure-button-primary">Create</button>
+        <button type="submit" class="pure-button pure-button-primary">Search</button>
     </fieldset>
 </form>
+</div>
 
-  <ul>
-    <li ui-sref="todo({id: todo._id})" ng-repeat="todo in tc.todos">{{todo.item}}</li>
-  </ul>
+<div class="list-group-item clearfix" ng-repeat="item in sc.allItems | orderBy: sc.allItems.customerRating">
+            <div class="col-sm-3 text-center">
+              <a href="{{item.productUrl}}" target="_blank"><img ng-src="{{ item.thumbnailImage }}"></a>
+            </div>
+            <div class="col-sm-9">
+              <h3>{{item.name}} <small>{{ item.salePrice | currency}} </h3>
+                <!-- <button ng-click="cc.destroyCar(car)" class="btn btn-sm btn-danger">Delete</button></small> -->
+              <p>
+                {{ item.shortDescription | limitTo: sc.textLimit}}
+                <span ng-if="item.description.length > sc.textLimit">...</span>
+              </p>
+            </div>
+          </div>
 </div>

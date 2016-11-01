@@ -1,0 +1,24 @@
+
+  #myMenu {
+    background: rgba(100, 135, 121, 0.71);
+    width:250px;
+    height: 100%;
+    position:fixed;
+    top: 0;
+    padding: 20px 8px 30px 20px;
+    margin-top: 50px;
+
+    -webkit-transition: left 0.3s;
+  }
+
+  #myMenu.menu-active {
+    left: 0
+  }
+
+  #myMenu.menu-inactive {
+    left: -180px;
+  }
+
+  .toggleBtn{
+    float: right;
+  }

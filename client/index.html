@@ -3,18 +3,28 @@
 
 <head>
   <meta charset="utf-8">
-  <title>MEAN Auth</title>
+  <title>Project 4</title>
   <!-- styles -->
-  <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.6/yeti/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" title="no title">
+  <link rel="stylesheet" href="/css/sideStyle.css" media="screen" title="no title">
 </head>
 <body>
 
-
   <div class="container" ng-controller="mainController as main">
     <navigation-bar></navigation-bar>
+
+
     Logged in user: {{ main.currentUser.username }}
-    <div></div>
     <ui-view></ui-view>
+    <div id="myMenu" class="{{main.menuActive ? 'menu-active' : 'menu-inactive'}}">
+        <button class="toggleBtn" ng-click="main.toggleMenu()" type="button" name="button">MENU</button>
+      <ul>
+        <li>Test</li>
+        <li>link 21</li>
+        <li>Hi</li>
+      </ul>
+    </div>
+
   </div>
 
   <!-- scripts -->

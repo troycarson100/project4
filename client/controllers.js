@@ -3,19 +3,24 @@ angular.module('myApp')
   .controller('loginController', loginController)
   .controller('logoutController', logoutController)
   .controller('registerController', registerController)
-  .controller('searchController', searchController)
+  .controller('SearchController', SearchController)
 
 
   mainController.$inject = ['$rootScope', '$state', 'AuthService']
   loginController.$inject = ['$state', 'AuthService']
   logoutController.$inject = ['$state', 'AuthService']
   registerController.$inject = ['$state', 'AuthService']
-  searchController.$inject = ['$state', 'AuthService']
+  SearchController.$inject = ['$state', 'AuthService']
 
 
 
 function mainController($rootScope, $state, AuthService) {
   var vm = this
+
+  vm.toggleMenu = function(){
+    vm.menuActive = !vm.menuActive
+  }
+  
   $rootScope.$on('$stateChangeStart', function (event) {
     // console.log("Changing states")
     AuthService.getUserStatus()
@@ -24,13 +29,24 @@ function mainController($rootScope, $state, AuthService) {
       })
   })
 }
-//
-// function searchController($state, AuthService){
-//   var vm = this
-//   vm.search = function (){
-//
-//   }
-// }
+
+SearchController.$inject = ['$state', 'AuthService', '$http']
+
+function SearchController($state, AuthService, $http){
+  var vm = this
+  vm.termino = ""
+  vm.textLimit = 100
+  vm.walmartSearch = function(){
+    console.log("let us search for "+ vm.termino)
+    url= '/search?term='+ vm.termino
+    $http.get(url).then(function(response){
+      vm.items = JSON.parse(response.data)
+      vm.allItems = vm.items.items
+      console.log(vm.allItems)
+    })
+  }
+
+}
 
 // LOGIN CONTROLLER:
 function loginController($state, AuthService) {

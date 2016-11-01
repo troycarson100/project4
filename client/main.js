@@ -1,5 +1,6 @@
 var myApp = angular.module('myApp', ['ui.router'])
-.directive('navigationBar', navigationBar)
+  .directive('navigationBar', navigationBar)
+  .directive('sideMenu', sideMenu)
 
 myApp.config(function ($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/')
@@ -49,6 +50,13 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     return {
       restrict: 'E',
       templateUrl: '/partials/nav.html'
+    }
+  }
+
+  function sideMenu() {
+    return {
+      restrict: 'E',
+      templateUrl: '/partials/side.html'
     }
   }
 
