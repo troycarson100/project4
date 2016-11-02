@@ -34,20 +34,58 @@ SearchController.$inject = ['$state', 'AuthService', '$http']
 
 function SearchController($state, AuthService, $http){
   var vm = this
+
+  // vm.normalizeResults = function(combined){
+  //
+  // }
+
   vm.termino = ""
   vm.textLimit = 100
-  vm.walmartSearch = function(){
-    console.log("let us search for "+ vm.termino)
-    url= '/search?term='+ vm.termino
-    $http.get(url).then(function(response){
+  vm.selected = false
+
+  AuthService.getUserStatus()
+    .then(function(data){
+      vm.currentUser = data.data.user
+    })
+
+  vm.toggleLike= function(){
+      vm.likeActive = !vm.likeActive
+    }
+
+  vm.liked = function(obj){
+    $http.post('/user/users/'+ vm.currentUser._id +'/likes', obj)
+      .then(function(data){
+        console.log(data)
+        // vm.toggleLike = true
+        // vm.blueBtn = 'backgroud: blue;'
+      })
+  }
+  // if(vm.toggleLike){
+  //   $http.delete('/user/users/' + vm.currentUser._id +'/likes'+ vm.currentUser._id.likes._id)
+  //   vm.toggleLike = false
+  //   vm.blueBtn = 'backgroud: white;'
+  // }
+
+  vm.etsySearch = function(word){
+    etsUrl= '/search?etsyWord='+ word
+    $http.get(etsUrl).then(function(response){
       console.log(response)
+    })
+  }
+  vm.walmartSearch = function(word){
+    console.log("let us search for "+ word)
+    url= '/search?term='+ word
+    $http.get(url).then(function(response){
+      // console.log(response)
       vm.items = response.data
       console.log(vm.items)
       vm.walmart = vm.items.products.walmart.items
-
+      vm.etsySearch(word)
     })
+    vm.walmartToggle = function(){
+      vm.selected = !vm.selected
+    }
   }
-
 }
 
 // LOGIN CONTROLLER:

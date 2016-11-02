@@ -23,3 +23,9 @@
   .toggleBtn{
     float: right;
   }
+  .like-active{
+    background: blue;
+  }
+  .like-inactive{
+    background: white;
+  }

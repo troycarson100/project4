@@ -1,6 +1,5 @@
 var myApp = angular.module('myApp', ['ui.router'])
   .directive('navigationBar', navigationBar)
-  .directive('sideMenu', sideMenu)
 
 myApp.config(function ($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/')
@@ -25,15 +24,6 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
       templateUrl: 'templates/register.html',
       controller: 'registerController as registerCtrl'
     })
-    .state('one', {
-      url: '/one',
-      template: '<h1>This is page one!</h1>'
-    })
-    .state('two', {
-      url: '/two',
-      template: '<h1>This is page two!</h1>',
-      restricted: true
-    })
     .state('profile', {
       url: '/profile',
       templateUrl: 'templates/profile.html',
@@ -44,19 +34,17 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
       templateUrl: 'templates/search.html',
       controller: 'SearchController as sc'
     })
+    .state('categories', {
+      url: '/categories',
+      templateUrl: 'templates/categories.html',
+      controller: 'SearchController as sc'
+    })
 })
 
   function navigationBar() {
     return {
       restrict: 'E',
       templateUrl: '/partials/nav.html'
-    }
-  }
-
-  function sideMenu() {
-    return {
-      restrict: 'E',
-      templateUrl: '/partials/side.html'
     }
   }
 

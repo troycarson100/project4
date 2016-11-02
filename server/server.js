@@ -12,8 +12,10 @@ var
   request = require('request'),
   passport = require('passport'),
   passportConfig = require('./config/passport.js'),
-  Hashes = require('jshashes'),
-  parser = require('xml2json'),
+  // etsyjs = require('etsy-js'),
+  // client = etsyjs.client('s0d7m2hmm5k6c3z4q5sgs0jc'),
+  // Hashes = require('jshashes'),
+  // parser = require('xml2json'),
   port = process.env.PORT || 3000
 
 
@@ -28,7 +30,7 @@ mongoose.connect('mongodb://localhost/mean-auth', function(err) {
 
 // user schema/model
 var User = require('./models/User.js')
-var Tweet = require('./models/Tweet.js')
+var Like = require('./models/Like.js')
 
 
 var routes = require('./routes/api.js')
@@ -42,7 +44,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(require('express-session')({
-    secret: 'keyboard cat',
+    secret: 'keyboa rd cat',
     resave: false,
     saveUninitialized: false
 }))
@@ -95,28 +97,28 @@ app.get('/search', function(req, res) {
   // console.log(req.query)
   var apiUrl = 'http://api.walmartlabs.com/v1/search?query='
   var apiKey = '&format=json&facet=on&facet.range=price%3A%5B1+TO+50%5D&apiKey=khaernw7exvbwswcvbupfyw2&sort=relevance&numItems=25'
-  var apiUrlEtsy = 'https://openapi.etsy.com/v2/listings/active?api_key='
-  var apiKeyEtsy = 's0d7m2hmm5k6c3z4q5sgs0jc'
+  var apiUrlEtsy = 'https://openapi.etsy.com/v2/listings/active?keywords='
+  var apiKeyEtsy = '&api_key=s0d7m2hmm5k6c3z4q5sgs0jc'
 
   var combinedApi = {
     totalCount: 0,
     products: {
-      walmart: [],
-      etsy: []
+      walmart: null,
+      etsy: null
     }
   }
+  //request for walmart
     request.get(apiUrl + req.query.term + apiKey, function(err, walmartResponse, walmartBody) {
       combinedApi.products.walmart = (JSON.parse(walmartBody))
 
-      request.get(apiUrlEtsy + apiKeyEtsy, function(err, etsyResponse, etsyBody){
+      request.get(apiUrlEtsy + req.query.etsyWord + apiKeyEtsy, function(err, etsyResponse, etsyBody){
         combinedApi.products.etsy = (JSON.parse(etsyBody))
         console.log(JSON.parse(etsyBody))
+        res.json(combinedApi)
+        // for(vendor in combinedApi.products) {
+        //   combinedApi.totalCount += combinedApi.products[vendor].length
+        // }
       })
-
-        for(vendor in combinedApi.products) {
-          combinedApi.totalCount += combinedApi.products[vendor].length
-        }
-      res.json(combinedApi)
     })
 })
 

@@ -4,6 +4,7 @@ var express = require('express'),
   passport = require('passport')
 
 var User = require('../models/User.js')
+var Like = require('../models/Like.js')
 
 
 router.post('/register', function(req, res) {
@@ -67,40 +68,47 @@ router.get('/status', function(req, res) {
 
 
 
-app.get('/users', function(req, res){
-  User.find({}, function(err, users){
+router.get('/users', function(req, res){
+  User.find({}).populate('likes').exec(function(err, users){
     if(err) return console.log(err)
     res.json(users)
   })
 })
 
-app.get('/users/:id', function(req, res){
-  User.findById(req.params.id).populate('tweets').exec(function(err, user){
+router.get('/users/:id', function(req, res){
+  User.findById(req.params.id).populate('likes').exec(function(err, user){
     if (err) return console.log(err)
     res.json(user)
   })
 })
 
-app.get('/users/:id/tweets', function(req, res){
-  Tweet.findById(req.params.id).populate('_by').exec(function(err, tweets){
+router.get('/users/:id/likes', function(req, res){
+  Like.findById(req.params.id).populate('_by').exec(function(err, likes){
     if (err) return console.log(err)
-    res.render(tweets)
+    res.render(likes)
   })
 })
 
-app.post('/users/:id/tweets', function(req, res){
+router.post('/users/:id/likes', function(req, res){
   User.findById(req.params.id, function(err, user){
-    var newTweet = new Tweet(req.body)
-    newTweet._by = User._id
-    newTweet.save(function(err){
+    var newLike = new Like(req.body)
+    newLike._by = user._id
+    newLike.save(function(err){
       if (err) return console.log(err)
-      user.tweets.push(newTweet)
+      user.likes.push(newLike)
       user.save(function(err) {
         if(err) return console.log(err)
-        res.redirect('users/:id/tweets/')
+          res.json({message: 'Success is true'})
+        // res.redirect('users/:id/likes/')
     })
   })
 })
+})
+router.delete('/users/:id', function(req, res){
+  Like.findByIdAndRemove(req.params.id, function(err, like){
+    if (err) return console.log(err)
+    like.remove()
+  })
 })
 
 

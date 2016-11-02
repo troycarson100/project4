@@ -1,15 +1,19 @@
 
 <div class="content">
-  <h2 class="content-subhead">Search Walmart</h2>
+  <h2 class="content-subhead">Categories</h2>
 
-  <form ng-submit="sc.walmartSearch(sc.termino)">
+  <form >
     <fieldset>
         <!-- <legend>Search Walmart:</legend> -->
+
         <input ng-click="sc.walmartToggle()" type="checkbox" name="name" checked> Walmart
       <br>
-        <input ng-model="sc.termino" id="name" type="text" placeholder="Item">
 
-        <button type="submit" class="pure-button pure-button-primary">Search</button>
+      <button ng-click="sc.walmartSearch('electronics')" type="submit" name="button">Electronics</button>
+      <button ng-click="sc.walmartSearch('accessories')"  type="submit" name="button">Accessories</button>
+      <button ng-click="sc.walmartSearch('womensclothing')" type="submit" name="button">Women's Clothing</button>
+      <button ng-click="sc.walmartSearch('mensclothing')" type="submit" name="button">Men's Clothing</button>
+
     </fieldset>
 </form>
 </div>
@@ -26,6 +30,6 @@
           {{ item.shortDescription | limitTo: sc.textLimit}}
           <span ng-if="item.description.length > sc.textLimit">...</span>
         </p>
-        <button ng-if="toggleLike()" ng-click="sc.liked({name: item.name, categoryPath: item.categoryPath, categoryNode: item.categoryNode,url: item.productUrl, image: item.thumbnailImage, price: item.salePrice,itemId: item.itemId})" type="button" name="button">Like</button>
+        <button ng-click="sc.liked({name: item.name, categoryPath: item.categoryPath, categoryNode: item.categoryNode,url: item.productUrl, image: item.thumbnailImage, price: item.salePrice,itemId: item.itemId}, sc.toggleLike())" class="{{sc.likeActive ? 'like-active' : 'menu-inactive'}}" type="button" name="button">Like</button>
       </div>
 </div>
