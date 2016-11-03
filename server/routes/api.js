@@ -100,9 +100,9 @@ router.post('/users/:id/likes', function(req, res){
         if(err) return console.log(err)
           res.json({likeIt: true, message: 'Success is true', user: newUser})
         // res.redirect('users/:id/likes/')
+      })
     })
   })
-})
 })
 router.delete('/users/:userId/likes/:itemId', function(req, res){
   User.findById(req.user._id, function(err, user) {

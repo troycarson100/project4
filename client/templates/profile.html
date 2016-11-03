@@ -1,14 +1,17 @@
 <div class="content">
   <h2 class="content-subhead">{{main.currentUser.username }}</h2>
   <br>
-  <div class="list-group-item clearfix" ng-repeat="item in main.currentUser.likes">
+  <div ng-if="!sic.likeIt" class="list-group-item clearfix" ng-repeat="item in sic.currentUser.likes">
 
         <div class="col-sm-4 text-center">
-          <a href="{{item.url}}" target="_blank"><img ng-src="{{ item.image }}"></a>
+          <a ui-sref="itemShow({id: item.itemId})"><img ng-src="{{ item.image }}"></a>
         </div>
         <div class="col-sm-8">
           <h3>  <a href="{{item.url}}" target="_blank">{{item.name}}</a> <small> {{ item.price | currency}} </h3>
+          <!-- <small>{{ item.categoryNode }}</small> -->
 
+
+          <button ng-click="sic.unliked(item)" type="button" name="button">remove</button>
           <!-- <button ng-if="toggleLike()" ng-click="sc.liked({name: item.name, categoryPath: item.categoryPath, categoryNode: item.categoryNode,url: item.productUrl, image: item.thumbnailImage, price: item.salePrice,itemId: item.itemId})" type="button" name="button">Like</button> -->
         </div>
   </div>

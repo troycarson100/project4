@@ -1,6 +1,7 @@
 <div class="content">
   <br>
-  <div class="list-group-item clearfix" >
+  <div class="col-sm-3"></div>
+  <div class="col-sm-9 list-group-item clearfix" >
 
         <div class="col-sm-4 text-center">
           <a href="{{sic.item.productUrl}}" target="_blank"><img ng-src="{{ sic.item.thumbnailImage }}"></a>
@@ -9,11 +10,12 @@
           <h3>  <a href="{{sic.item.productUrl}}" target="_blank">{{sic.item.name}}</a> <small> {{ sic.item.salePrice | currency}} </h3>
 
 
+
           <button ng-if="!sic.likeIt" ng-click="sic.liked({name: sic.item.name, categoryPath: sic.item.categoryPath, categoryNode: sic.item.categoryNode,url: sic.item.productUrl, image: sic.item.thumbnailImage, price: sic.item.salePrice,itemId: sic.item.itemId})" type="button" name="button">
             Like
           </button>
 
-          <button  ng-if="sic.likeIt" ng-show=" sic.data.data.likeIt " ng-click="sic.unliked(sic.item)" type="button" name="button">
+          <button  ng-if="sic.likeIt" ng-click="sic.unliked(sic.item)" type="button" name="button">
             Unlike
           </button>
         </div>

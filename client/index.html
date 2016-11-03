@@ -14,17 +14,9 @@
     <navigation-bar></navigation-bar>
 
 
-    Logged in user: {{ main.currentUser.username }}
+    {{ main.currentUser.username }}
     <ui-view></ui-view>
-    <div id="myMenu" class="{{main.menuActive ? 'menu-active' : 'menu-inactive'}}">
-        <button class="toggleBtn" ng-click="main.toggleMenu()" type="button" name="button">MENU</button>
-      <ul>
-        <li>Test</li>
-        <li>link 21</li>
-        <li>Hi</li>
-      </ul>
-    </div>
-
+    <suggestion-menu></suggestion-menu>
   </div>
 
   <!-- scripts -->

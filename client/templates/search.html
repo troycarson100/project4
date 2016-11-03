@@ -1,31 +1,31 @@
 
 <div class="content">
   <h2 class="content-subhead">Search Walmart</h2>
-
   <form ng-submit="sc.walmartSearch(sc.termino)">
     <fieldset>
-        <!-- <legend>Search Walmart:</legend> -->
         <input ng-click="sc.walmartToggle()" type="checkbox" name="name" checked> Walmart
       <br>
         <input ng-model="sc.termino" id="name" type="text" placeholder="Item">
 
         <button type="submit" class="pure-button pure-button-primary">Search</button>
     </fieldset>
-</form>
+  </form>
 </div>
 
-<div class="list-group-item clearfix" ng-hide="sc.selected" ng-repeat="item in sc.walmart | orderBy: sc.walmart.customerRating">
+<div class="row itemBox" ng-hide="sc.selected" ng-repeat="item in sc.walmart | orderBy: sc.walmart.customerRating">
 
-      <div class="col-sm-4 text-center">
-        <a ui-sref="itemShow({id: item.itemId})" ><img ng-src="{{ item.thumbnailImage }}"></a>
-      </div>
-      <div class="col-sm-8">
-        <h3>  <a href="{{item.productUrl}}" target="_blank">{{item.name}}</a> <small>{{ item.salePrice | currency}} </h3>
-  
-        <p>
-          {{ item.shortDescription | limitTo: sc.textLimit}}
-          <span ng-if="item.description.length > sc.textLimit">...</span>
-        </p>
+  <div class="col-sm-3"></div>
+  <div class="col-sm-9 list-group-item clearfix" >
+    <div class="col-sm-4 text-center">
+      <a ui-sref="itemShow({id: item.itemId})" ><img ng-src="{{ item.thumbnailImage }}"></a>
+    </div>
+    <div class="col-sm-8">
+      <h3>  <a href="{{item.productUrl}}" target="_blank">{{item.name}}</a> <small>{{ item.salePrice | currency}} </h3>
+      <p>
+        {{ item.shortDescription | limitTo: sc.textLimit}}
+        <span ng-if="item.description.length > sc.textLimit">...</span>
+      </p>
+    </div>
+  </div>
 
-      </div>
 </div>

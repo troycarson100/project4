@@ -1,0 +1,13 @@
+<div id="myMenu" class="{{main.menuActive ? 'menu-active' : 'menu-inactive'}}">
+
+    <span ng-click="main.toggleMenu()" class="toggleBtn glyphicon glyphicon-resize-horizontal" aria-hidden="true"></span>
+    <div class="space"></div>
+    <h4 class="sugText">Your Suggestions</h4>
+
+    <span class="sugBtn glyphicon glyphicon-download" ng-click="sug.printLikes()"></span>
+
+    <div class="text-center" ng-repeat="item in sug.fiveArr">
+      <a ui-sref="itemShow({id: item.itemId})" ><img class='sugBox' ng-src="{{ item.thumbnailImage }}"></a>
+    </div>
+
+</div>

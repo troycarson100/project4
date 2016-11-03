@@ -95,6 +95,17 @@ app.get('/', function(req, res) {
 // ------------------------ AMAZON
 
 
+app.get('/category', function(req, res){
+  var apiUrl ='http://api.walmartlabs.com/v1/paginated/items?format=json&category='
+  var apiKey ='&apiKey=khaernw7exvbwswcvbupfyw2'
+  var jsonResponse = {}
+  request.get(apiUrl +req.query.num+ apiKey, function(err, response, body){
+    jsonResponse.item = JSON.parse(body)
+    res.json(jsonResponse)
+  })
+})
+
+//Search API by words
 app.get('/search', function(req, res) {
   // console.log(req.query)
   var apiUrl = 'http://api.walmartlabs.com/v1/search?query='
@@ -124,6 +135,7 @@ app.get('/search', function(req, res) {
     })
 })
 
+//Search API for specific item
 app.get('/items/:id', function(req, res) {
   console.log('hello');
   apiUrl = 'http://api.walmartlabs.com/v1/items/'

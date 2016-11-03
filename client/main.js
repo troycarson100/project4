@@ -1,5 +1,6 @@
 var myApp = angular.module('myApp', ['ui.router'])
   .directive('navigationBar', navigationBar)
+  .directive('suggestionMenu', suggestionMenu)
 
 myApp.config(function ($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/')
@@ -24,11 +25,6 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
       templateUrl: 'templates/register.html',
       controller: 'registerController as registerCtrl'
     })
-    .state('profile', {
-      url: '/profile',
-      templateUrl: 'templates/profile.html',
-      restricted: true
-    })
     .state('search', {
       url: '/search',
       templateUrl: 'templates/search.html',
@@ -38,6 +34,12 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
       url: '/categories',
       templateUrl: 'templates/categories.html',
       controller: 'SearchController as sc'
+    })
+    .state('profile', {
+      url: '/profile',
+      templateUrl: 'templates/profile.html',
+      controller: 'SingleItemController as sic',
+      restricted: true
     })
     .state('itemShow', {
       url: '/item/:id',
@@ -50,6 +52,14 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     return {
       restrict: 'E',
       templateUrl: '/partials/nav.html'
+    }
+  }
+
+  function suggestionMenu() {
+    return {
+      restrict: 'E',
+      templateUrl: '/partials/suggestion.html',
+      controller: 'SuggestionController as sug'
     }
   }
 
