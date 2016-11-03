@@ -96,20 +96,33 @@ router.post('/users/:id/likes', function(req, res){
     newLike.save(function(err){
       if (err) return console.log(err)
       user.likes.push(newLike)
-      user.save(function(err) {
+      user.save(function(err, newUser) {
         if(err) return console.log(err)
-          res.json({message: 'Success is true'})
+          res.json({likeIt: true, message: 'Success is true', user: newUser})
         // res.redirect('users/:id/likes/')
     })
   })
 })
 })
-router.delete('/users/:id', function(req, res){
-  Like.findByIdAndRemove(req.params.id, function(err, like){
-    if (err) return console.log(err)
-    like.remove()
+router.delete('/users/:userId/likes/:itemId', function(req, res){
+  User.findById(req.user._id, function(err, user) {
+    if(err) return console.log(err)
+    Like.findOne({itemId: req.params.itemId, _by: req.user._id}, function(err, like) {
+      if(err) return console.log(err)
+      user.update({ $pull: {likes: like._id}}, {new: true}, function(err, user) {
+        if(err) return console.log(err)
+        like.remove(function(err) {
+          res.json({likeIt: false, message: "Like deleted...", user: user, itemUnliked: req.params.itemId})
+        })
+      })
+    })
   })
 })
 
+//reset user likes
+// User.findById("581a1c9c8b875652f6b6bf49", function(err, user) {
+//   user.likes = []
+//   user.save()
+// })
 
 module.exports = router

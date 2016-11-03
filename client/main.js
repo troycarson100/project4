@@ -39,6 +39,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
       templateUrl: 'templates/categories.html',
       controller: 'SearchController as sc'
     })
+    .state('itemShow', {
+      url: '/item/:id',
+      templateUrl: 'templates/itemShow.html',
+      controller: 'SingleItemController as sic'
+    })
 })
 
   function navigationBar() {

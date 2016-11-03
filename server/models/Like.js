@@ -13,5 +13,4 @@ var Like = new Schema({
   itemId: Number
 })
 
-
 module.exports = mongoose.model('Like', Like)

@@ -12,6 +12,7 @@ var
   request = require('request'),
   passport = require('passport'),
   passportConfig = require('./config/passport.js'),
+  MongoStore = require('connect-mongo')(expressSession),
   // etsyjs = require('etsy-js'),
   // client = etsyjs.client('s0d7m2hmm5k6c3z4q5sgs0jc'),
   // Hashes = require('jshashes'),
@@ -46,7 +47,8 @@ app.use(cookieParser())
 app.use(require('express-session')({
     secret: 'keyboa rd cat',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: new MongoStore({url: 'mongodb://localhost/mean-auth'})
 }))
 app.use(passport.initialize())
 app.use(passport.session())
@@ -122,6 +124,25 @@ app.get('/search', function(req, res) {
     })
 })
 
+app.get('/items/:id', function(req, res) {
+  console.log('hello');
+  apiUrl = 'http://api.walmartlabs.com/v1/items/'
+  apiKey = '?format=json&apiKey=khaernw7exvbwswcvbupfyw2'
+
+  Like.findOne({itemId: parseInt(req.params.id), _by: req.user._id}, function(err, like) {
+    var jsonResponse = {}
+    // jsonResponse.likeIt = true
+    console.log(like);
+    jsonResponse.likeIt = like ? true : false
+    request.get(apiUrl + req.params.id + apiKey, function(err, response, body) {
+    jsonResponse.item = JSON.parse(body)
+    // console.log(JSON.parse(body))
+    res.json(jsonResponse)
+    // console.log(jsonResponse)
+    // jsonResponse.item = {itemId: req.params.id, name: "Dell XP 5000 Laptop", category: "Your Mom"}
+    })
+  })
+})
 // error hndlers
 app.use(function(req, res, next) {
   var err = new Error('Not Found')
