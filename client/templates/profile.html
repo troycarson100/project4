@@ -3,6 +3,9 @@
   <div class="container">
 
   <h2 class="content-subhead">{{main.currentUser.username }}</h2>
+
+    <a ng-controller="logoutController as logoutCtrl" ng-click='logoutCtrl.logout()' class="btn btn-default">Logout</a>
+
   <br>
 </div>
 </div>

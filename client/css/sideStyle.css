@@ -22,6 +22,9 @@
     color: #ccffee;
     font-family: 'Shrikhand', cursive;
   }
+  .navbar-default .navbar-brand:focus {
+    color: #ccffee;
+  }
   .toggleBtn{
     float: right;
     font-size: 40px;
