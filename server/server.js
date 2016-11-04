@@ -110,7 +110,7 @@ app.get('/category', function(req, res){
 app.get('/search', function(req, res) {
   // console.log(req.query)
   var apiUrl = 'http://api.walmartlabs.com/v1/search?query='
-  var apiKey = '&format=json&facet=on&facet.range=price%3A%5B1+TO+80%5D&apiKey='+process.env.WALMART_API_KEY+'&sort=relevance&numItems=25'
+  var apiKey =  '&format=json&facet=on&facet.range=price%3A%5B1+TO+80%5D&apiKey='+process.env.WALMART_API_KEY+'&sort=relevance&numItems=25'
   var apiUrlEtsy = 'https://openapi.etsy.com/v2/listings/active?keywords='
   var apiKeyEtsy = '&api_key='+process.env.ETSY_API_KEY
 
