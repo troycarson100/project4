@@ -12,7 +12,7 @@ angular.module('myApp')
   SuggestionController.$inject = ['$state', 'AuthService', '$http']
   SingleItemController.$inject = ['$state', 'AuthService', '$http', '$stateParams']
   SearchController.$inject = ['$state', 'AuthService', '$http', '$rootScope']
-  loginController.$inject = ['$state', 'AuthService']
+  loginController.$inject = ['$state', 'AuthService', '$stateParams']
   logoutController.$inject = ['$state', 'AuthService']
   registerController.$inject = ['$state', 'AuthService']
 
@@ -207,7 +207,7 @@ function SearchController($state, AuthService, $http, $rootScope){
 }
 
 // LOGIN CONTROLLER:
-function loginController($state, AuthService) {
+function loginController($state, AuthService, $stateParams) {
   var vm = this
   vm.login = function () {
 
@@ -220,6 +220,7 @@ function loginController($state, AuthService) {
       // handle success
       .then(function () {
         console.log("Successful login...")
+        $state.transitionTo($state.current, $stateParams, { reload: true, inherit: false, notify: true })
         $state.go('profile')
         vm.disabled = false
         vm.loginForm = {}
