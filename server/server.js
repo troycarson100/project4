@@ -97,7 +97,7 @@ app.get('/', function(req, res) {
 
 app.get('/category', function(req, res){
   var apiUrl ='http://api.walmartlabs.com/v1/paginated/items?format=json&category='
-  var apiKey ='&apiKey=khaernw7exvbwswcvbupfyw2'
+  var apiKey ='&apiKey='+process.env.WALMART_API_KEY
   var jsonResponse = {}
   request.get(apiUrl +req.query.num+ apiKey, function(err, response, body){
     jsonResponse.item = JSON.parse(body)
@@ -109,9 +109,9 @@ app.get('/category', function(req, res){
 app.get('/search', function(req, res) {
   // console.log(req.query)
   var apiUrl = 'http://api.walmartlabs.com/v1/search?query='
-  var apiKey = '&format=json&facet=on&facet.range=price%3A%5B1+TO+50%5D&apiKey=khaernw7exvbwswcvbupfyw2&sort=relevance&numItems=25'
+  var apiKey = '&format=json&facet=on&facet.range=price%3A%5B1+TO+80%5D&apiKey='+process.env.WALMART_API_KEY+'&sort=relevance&numItems=25'
   var apiUrlEtsy = 'https://openapi.etsy.com/v2/listings/active?keywords='
-  var apiKeyEtsy = '&api_key=s0d7m2hmm5k6c3z4q5sgs0jc'
+  var apiKeyEtsy = '&api_key='+process.env.ETSY_API_KEY
 
   var combinedApi = {
     totalCount: 0,
@@ -139,7 +139,7 @@ app.get('/search', function(req, res) {
 app.get('/items/:id', function(req, res) {
   console.log('hello');
   apiUrl = 'http://api.walmartlabs.com/v1/items/'
-  apiKey = '?format=json&apiKey=khaernw7exvbwswcvbupfyw2'
+  apiKey = '?format=json&apiKey='+process.env.WALMART_API_KEY
 
   Like.findOne({itemId: parseInt(req.params.id), _by: req.user._id}, function(err, like) {
     var jsonResponse = {}

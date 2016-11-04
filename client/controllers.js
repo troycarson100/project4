@@ -37,6 +37,7 @@ function mainController($rootScope, $state, $http, AuthService) {
 
   vm.navSearch = function(word){
     console.log(word)
+    vm.searchTerm = word
     $state.go('search')
     console.log(word)
     $rootScope.url = '/search?term='+ word
@@ -187,9 +188,9 @@ function SearchController($state, AuthService, $http, $rootScope){
   }
 
   vm.walmartSearch = function(word){
+    if(!word) return
     console.log("let us search for "+ word)
     url= '/search?term='+ word
-
       $http.get(url).then(function(response){
       vm.items = response.data
       console.log(vm.items)

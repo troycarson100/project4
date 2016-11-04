@@ -10,11 +10,11 @@
 </head>
 <body>
 
-  <div class="container" ng-controller="mainController as main">
+  <div ng-controller="mainController as main">
     <navigation-bar></navigation-bar>
 
 
-    {{ main.currentUser.username }}
+    <!-- {{ main.currentUser.username }} -->
     <ui-view></ui-view>
     <suggestion-menu></suggestion-menu>
   </div>

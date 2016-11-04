@@ -5,7 +5,8 @@
     <fieldset>
         <input ng-click="sc.walmartToggle()" type="checkbox" name="name" checked> Walmart
       <br>
-        <input ng-model="sc.termino" id="name" type="text" placeholder="Item">
+
+        <input ng-init="sc.walmartSearch(main.searchTerm)" ng-model="sc.termino" id="name" type="text" placeholder="Item">
 
         <button type="submit" class="pure-button pure-button-primary">Search</button>
     </fieldset>
