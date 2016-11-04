@@ -4,6 +4,8 @@
 
 SuggestU is a mean stack application that finds the perfect items for your shopping cart. The app has been developed for easy further implementation of more API's. Now, SuggestU is only compatible with Walmarts API, but I plan on including Etsy, Amazon, and more. 
 
+![Screen Shot](./readmeAssets/P4_p.png)
+
 ##How to Use
 
 The user will scroll through products and "like" or bookmark items. Next, the user can take advantage of the side bars suggestion generator that will favor categories based on their bookmarks.
@@ -18,6 +20,10 @@ Visit https://polar-shelf-78066.herokuapp.com/ to view and sign up, or simply vi
 Technologies used: MongoDB | ExpressJS | AngularJS | NodeJS
 
 Using third party API calls to Walmart, I could populate my front-end search for the user. Then, the user is able to store products they like and have them saved to their private database.
+
+##Concept Wireframe
+
+![Screen Shot](./readmeAssets/P4_w.png)
 
 
 ##Not-Yet-Implemented
