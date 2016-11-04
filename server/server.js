@@ -49,7 +49,7 @@ app.use(require('express-session')({
     secret: 'keyboa rd cat',
     resave: false,
     saveUninitialized: false,
-    store: new MongoStore({url: 'mongodb://localhost/mean-auth'})
+    store: new MongoStore({url: mongooseConnect})
 }))
 app.use(passport.initialize())
 app.use(passport.session())
