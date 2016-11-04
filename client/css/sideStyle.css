@@ -7,7 +7,7 @@
     top: 0;
     padding: 20px 2px 30px 20px;
     margin-top: 50px;
-    border-radius: 8px;
+    /*border-radius: 8px;*/
     -webkit-transition: left 0.3s;
   }
 
@@ -52,8 +52,86 @@
     margin-top: 5px;
   }
   .backImg{
-    background: url()
+    background-image: url('../img/head.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 220px;
   }
-  .topContent{
+  .container{
+    padding-top: 80px;
+  }
+  .navbar-default{
+    margin: 0;
+  }
+body{
+  background: #FFEEEE; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #FFEEEE , #DDEFBB); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #FFEEEE , #DDEFBB); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.texty{
+  background-color: rgba(0,0,0,0.3);
+  border: none;
+  height: 35px;
+  text-align: center;
 
-  }
+}
+::-webkit-input-placeholder {
+   color: #f7f7f7;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: #f7f7f7;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #f7f7f7;
+}
+
+:-ms-input-placeholder {
+   color: #f7f7f7;
+}
+
+.btnBlue {
+  background: #688ea8;
+  background-image: -webkit-linear-gradient(top, #688ea8, #2980b9);
+  background-image: -moz-linear-gradient(top, #688ea8, #2980b9);
+  background-image: -ms-linear-gradient(top, #688ea8, #2980b9);
+  background-image: -o-linear-gradient(top, #688ea8, #2980b9);
+  background-image: linear-gradient(to bottom, #688ea8, #2980b9);
+  -webkit-border-radius: 12;
+  -moz-border-radius: 12;
+  border-radius: 12px;
+  -webkit-box-shadow: 3px 2px 11px #08a679;
+  -moz-box-shadow: 3px 2px 11px #08a679;
+  box-shadow: 3px 2px 11px #08a679;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 10px 20px 10px 20px;
+  border: solid #4688b0 2px;
+  text-decoration: none;
+}
+
+.btnBlue:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+.navbar-default{
+  background-color: #3d464c;
+  border: none;
+  border-radius: 0;
+}
+.navbar .nav > li > a  {
+    color: white;
+}
+.navbar .nav > li > a:hover  {
+    color: lime;
+}
+.navbar .nav > li > a:focus  {
+    color: lime;
+}

@@ -1,8 +1,14 @@
 <div class="content">
+  <div class="backImg">
+  <div class="container">
+
   <h2 class="content-subhead">{{main.currentUser.username }}</h2>
   <br>
-  <div ng-if="!sic.likeIt" class="list-group-item clearfix" ng-repeat="item in sic.currentUser.likes">
-
+</div>
+</div>
+  <div ng-if="!sic.likeIt" class="itemBox row" ng-repeat="item in sic.currentUser.likes">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-9 list-group-item clearfix" >
         <div class="col-sm-4 text-center">
           <a ui-sref="itemShow({id: item.itemId})"><img ng-src="{{ item.image }}"></a>
         </div>

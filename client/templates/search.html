@@ -1,16 +1,17 @@
+<div class="backImg">
+  <div class="content container">
+    <h2 class="content-subhead">Search Walmart</h2>
+    <form ng-submit="sc.walmartSearch(sc.termino)">
+      <fieldset>
+          <input ng-click="sc.walmartToggle()" type="checkbox" name="name" checked> Walmart
+        <br>
 
-<div class="content">
-  <h2 class="content-subhead">Search Walmart</h2>
-  <form ng-submit="sc.walmartSearch(sc.termino)">
-    <fieldset>
-        <input ng-click="sc.walmartToggle()" type="checkbox" name="name" checked> Walmart
-      <br>
+          <input class="texty" ng-init="sc.walmartSearch(main.searchTerm)" ng-model="sc.termino" id="name" type="text" placeholder="Find Product">
 
-        <input ng-init="sc.walmartSearch(main.searchTerm)" ng-model="sc.termino" id="name" type="text" placeholder="Item">
-
-        <button type="submit" class="pure-button pure-button-primary">Search</button>
-    </fieldset>
-  </form>
+          <button class="btnBlue" type="submit" class="pure-button pure-button-primary">Search</button>
+      </fieldset>
+    </form>
+  </div>
 </div>
 
 <div class="row itemBox" ng-hide="sc.selected" ng-repeat="item in sc.walmart | orderBy: sc.walmart.customerRating">
