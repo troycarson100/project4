@@ -210,7 +210,7 @@ function loginController($state, AuthService, $stateParams) {
       // handle success
       .then(function () {
         console.log("Successful login...")
-        $state.transitionTo($state.current, $stateParams, { reload: true, inherit: false, notify: true })
+        // $state.transitionTo($state.current, $stateParams, { reload: true, inherit: false, notify: true })
         $state.go('profile')
         vm.disabled = false
         vm.loginForm = {}

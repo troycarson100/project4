@@ -57,6 +57,7 @@
   }
   .itemBox{
     margin-top: 5px;
+    margin-right: 5px;
   }
   .backImg{
     background-image: url('../img/head.jpg');
