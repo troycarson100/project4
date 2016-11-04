@@ -1,6 +1,6 @@
 var
-  express = require('express'),
   dotenv = require('dotenv').load({silent: true}),
+  express = require('express'),
   logger = require('morgan'),
   app = express(),
   cookieParser = require('cookie-parser'),
