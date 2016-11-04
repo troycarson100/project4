@@ -18,10 +18,14 @@
   #myMenu.menu-inactive {
     left: -220px;
   }
-
+  .navbar-default .navbar-brand {
+    color: #ccffee;
+    font-family: 'Shrikhand', cursive;
+  }
   .toggleBtn{
     float: right;
     font-size: 40px;
+    margin-right: 6px;
   }
   .like-active{
     background: blue;
