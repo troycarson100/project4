@@ -4,7 +4,7 @@
 
 SuggestU is a mean stack application that finds the perfect items for your shopping cart. The app has been developed for easy further implementation of more API's. Now, SuggestU is only compatible with Walmarts API, but I plan on including Etsy, Amazon, and more. 
 
-![Screen Shot](./readmeAssets/P4_p.png)
+![Screen Shot](./readmeAssets/p4.png)
 
 ##How to Use
 
