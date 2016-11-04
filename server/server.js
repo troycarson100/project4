@@ -13,6 +13,7 @@ var
   passport = require('passport'),
   passportConfig = require('./config/passport.js'),
   MongoStore = require('connect-mongo')(expressSession),
+  mongooseConnect = process.env.MONGO_URL,
   // etsyjs = require('etsy-js'),
   // client = etsyjs.client('s0d7m2hmm5k6c3z4q5sgs0jc'),
   // Hashes = require('jshashes'),
@@ -22,7 +23,7 @@ var
 
 
 // mongoose
-mongoose.connect('mongodb://localhost/mean-auth', function(err) {
+mongoose.connect(mongooseConnect, function(err) {
   if(err) return console.log(err)
   console.log("Connected to MongoDB (mean-auth)")
 })
