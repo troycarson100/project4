@@ -1,9 +1,10 @@
 <div class="backImg">
   <div class="content container">
-    <h2 class="content-subhead">Search Walmart</h2>
+    <h2 class="content-subhead">Search</h2>
     <form ng-submit="sc.walmartSearch(sc.termino)">
       <fieldset>
           <input ng-click="sc.walmartToggle()" type="checkbox" name="name" checked> Walmart
+          <input ng-click="sc.etsyToggle()" type="checkbox" name="name" checked> Etsy
         <br>
 
           <input class="texty" ng-init="sc.walmartSearch(main.searchTerm)" ng-model="sc.termino" id="name" type="text" placeholder="Find Product">
@@ -29,5 +30,22 @@
       </p>
     </div>
   </div>
+</div>
 
+<div class="row itemBox" ng-hide="sc.selectedEtsy" ng-repeat="item in sc.etsy">
+
+  <div class="col-sm-3"></div>
+  <div class="col-sm-9 list-group-item clearfix" >
+    <div class="col-sm-4 text-center">
+      <!-- <a ui-sref="itemShow({id: item.itemId})" ><img ng-src="{{ item.thumbnailImage }}"></a> -->
+    </div>
+    <div class="col-sm-8">
+      <h3>  <a href="{{item.url}}" target="_blank">{{item.title | limitTo: sc.nameLimit}}</a> <small>{{ item.price | currency}} </h3>
+        <!-- <span ng-if="item.title.length > sc.nameLimit">...</span> -->
+      <p>
+        {{ item.description | limitTo: sc.textLimit}}
+        <span ng-if="item.description.length > sc.textLimit">...</span>
+      </p>
+    </div>
+  </div>
 </div>

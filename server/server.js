@@ -129,9 +129,7 @@ app.get('/search', function(req, res) {
         combinedApi.products.etsy = (JSON.parse(etsyBody))
         console.log(JSON.parse(etsyBody))
         res.json(combinedApi)
-        // for(vendor in combinedApi.products) {
-        //   combinedApi.totalCount += combinedApi.products[vendor].length
-        // }
+
       })
     })
 })

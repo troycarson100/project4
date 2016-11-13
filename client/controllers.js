@@ -155,7 +155,9 @@ function SearchController($state, AuthService, $http, $rootScope){
 
   vm.termino = ""
   vm.textLimit = 100
+  vm.nameLimit = 40
   vm.selected = false
+  vm.selectedEtsy = false
 
   AuthService.getUserStatus()
     .then(function(data){
@@ -172,8 +174,11 @@ function SearchController($state, AuthService, $http, $rootScope){
 
   vm.etsySearch = function(word){
     etsUrl= '/search?etsyWord='+ word
+    // console.log(etsUrl)
     $http.get(etsUrl).then(function(response){
       console.log(response)
+      vm.items = response.data
+      vm.etsy = vm.items.products.etsy.results
     })
   }
 
@@ -185,12 +190,16 @@ function SearchController($state, AuthService, $http, $rootScope){
       vm.items = response.data
       console.log(vm.items)
       vm.walmart = vm.items.products.walmart.items
+      vm.etsySearch(word)
     })
 
       // vm.etsySearch(word)
 
     vm.walmartToggle = function(){
       vm.selected = !vm.selected
+    }
+    vm.etsyToggle = function(){
+      vm.selectedEtsy = !vm.selectedEtsy
     }
   }
 
